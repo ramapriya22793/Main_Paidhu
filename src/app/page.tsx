@@ -859,20 +859,33 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { name: 'Paidhu Ethical Foods', logo: 'https://paidhu.com/Paidhulogo.png', link: 'https://www.paidhuethicalfoods.com/', desc: 'Discover premium quality organic edible flowers, organic saffron, and handcrafted floral jams.' },
-              { name: 'Floffi Preservation', logo: 'https://floffi.in/floffi_logo.png', link: 'https://floffi.in/', desc: 'Naturally crafted floral goodness, premium fruit jams, spreads, and natural preserves.' },
-              { name: 'Viyara IT Services', logo: 'https://viyara.co.in/logo-badge-blue.png', link: 'https://viyara.co.in/', desc: 'Engineers world-class enterprise software and curates premium brand experiences.' },
-              { name: 'Kalika Sphere', logo: 'https://www.kalikasphere.com/assets/logo-Drzuq4t7.png', link: 'https://www.kalikasphere.com/', desc: 'Future-ready skill development platforms, tech courses, and corporate training.' },
+              { name: 'Paidhu Ethical Foods', logo: '/paidhu_logo_white.png', link: 'https://www.paidhuethicalfoods.com/', desc: 'Discover premium quality organic edible flowers, organic saffron, and handcrafted floral jams.', brandColor: '#522742' },
+              { name: 'Floffi Preservation', logo: 'https://floffi.in/floffi_logo.png', link: 'https://floffi.in/', desc: 'Naturally crafted floral goodness, premium fruit jams, spreads, and natural preserves.', brandColor: '#E2583E' },
+              { name: 'Viyara IT Services', logo: 'https://viyara.co.in/logo-badge-blue.png', link: 'https://viyara.co.in/', desc: 'Engineers world-class enterprise software and curates premium brand experiences.', brandColor: '#162436' },
+              { name: 'Kalika Sphere', logo: 'https://www.kalikasphere.com/assets/logo-Drzuq4t7.png', link: 'https://www.kalikasphere.com/', desc: 'Future-ready skill development platforms, tech courses, and corporate training.', brandColor: '#06B6D4' },
             ].map((logo, index) => (
               <div
                 key={index}
-                className="group relative p-8 rounded-3xl bg-[#FFFFFF] dark:bg-dark border border-gray-200/10 shadow-md hover:shadow-2xl transition-all duration-300 text-center flex flex-col justify-between"
+                className={`group relative p-8 rounded-3xl bg-[#FFFFFF] dark:bg-dark border border-gray-200/10 shadow-md hover:shadow-2xl text-center flex flex-col justify-between transform transition-all duration-700 ${visibleSections.brands ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}
+                style={{ 
+                  transitionDelay: `${index * 150}ms`,
+                  borderColor: 'transparent',
+                  '--hover-color': logo.brandColor 
+                } as React.CSSProperties}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = logo.brandColor;
+                  e.currentTarget.style.boxShadow = `0 20px 40px -15px ${logo.brandColor}20`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'transparent';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
               >
-                <div className="absolute inset-0 bg-accent-gold/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ backgroundColor: `${logo.brandColor}05` }} />
                 
                 <div>
                   <div 
-                    className="w-20 h-20 border border-gray-200/10 mx-auto flex items-center justify-center p-3 rounded-2xl mb-6 shadow-sm transition-transform duration-500 group-hover:scale-110 overflow-hidden"
+                    className="w-20 h-20 border border-gray-200/10 mx-auto flex items-center justify-center p-3 rounded-2xl mb-6 shadow-sm transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 overflow-hidden"
                     style={{ backgroundColor: logo.name === 'Paidhu Ethical Foods' ? '#522742' : '#ffffff' }}
                   >
                     {logo.name === 'Paidhu Ethical Foods' ? (
@@ -889,7 +902,7 @@ export default function Home() {
                   href={logo.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2.5 rounded-full border border-gray-200 dark:border-gray-800 text-[11px] uppercase tracking-wider font-semibold group-hover:bg-accent-gold group-hover:border-accent-gold group-hover:text-white transition-all duration-300 font-button"
+                  className="w-full py-2.5 rounded-full border border-gray-200 dark:border-gray-800 text-[11px] uppercase tracking-wider font-semibold hover:bg-[var(--hover-color)] hover:border-transparent hover:text-white transition-all duration-300 font-button"
                 >
                   Visit Website
                 </a>
