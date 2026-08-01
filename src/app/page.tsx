@@ -49,7 +49,6 @@ export default function Home() {
     home: useRef<HTMLDivElement>(null),
     about: useRef<HTMLDivElement>(null),
     businesses: useRef<HTMLDivElement>(null),
-    sustainability: useRef<HTMLDivElement>(null),
     brands: useRef<HTMLDivElement>(null),
     projects: useRef<HTMLDivElement>(null),
     timeline: useRef<HTMLDivElement>(null),
@@ -709,53 +708,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sustainability Section */}
-      <section
-        id="sustainability"
-        ref={sectionRefs.sustainability}
-        className={`py-32 relative flex items-center justify-center overflow-hidden transition-all duration-1000 transform ${visibleSections.sustainability ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-      >
-        {/* Parallax Image Overlay */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary/80 z-10" />
-          <img
-            src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&q=80&w=1500"
-            alt="Forest conservation"
-            className="w-full h-full object-cover scale-102 filter brightness-[0.7] contrast-[1.1]"
-          />
-        </div>
 
-        <div className="relative max-w-5xl mx-auto px-6 text-center z-20 text-white">
-          <span className="text-xs uppercase tracking-widest text-accent-gold font-semibold">ESG Priorities</span>
-          <h2 className="text-3xl md:text-6xl font-serif font-light mt-2 mb-8 leading-tight">
-            Growing Better Together. <br />
-            <span className="font-semibold italic text-accent-gold">Nurturing Communities.</span>
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-left">
-            <div className="p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
-              <span className="text-accent-gold text-xs font-semibold uppercase tracking-wider block mb-2">Ethical Sourcing</span>
-              <p className="text-xs opacity-80 leading-relaxed">
-                100% trace-to-origin procurement across edible crops, ensuring farmers receive fair value wages and standard resource support.
-              </p>
-            </div>
-            
-            <div className="p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
-              <span className="text-accent-gold text-xs font-semibold uppercase tracking-wider block mb-2">Eco-Packaging</span>
-              <p className="text-xs opacity-80 leading-relaxed">
-                Utilizing 100% biodegradable wrappers, recyclable jars, and zero-plastic elements for Floffi and Bloom Cookies products.
-              </p>
-            </div>
-
-            <div className="p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
-              <span className="text-accent-gold text-xs font-semibold uppercase tracking-wider block mb-2">Community First</span>
-              <p className="text-xs opacity-80 leading-relaxed">
-                Allocating 5% of group resources to free software development bootcamps and skill workshops under Kalika Sphere.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Brand Showcase Wall */}
       <section
