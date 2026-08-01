@@ -603,42 +603,19 @@ export default function Home() {
         className={`py-24 md:py-32 bg-[#EDEDED]/50 dark:bg-dark relative transition-all duration-1000 transform ${visibleSections.businesses ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
-            <div>
-              <span className="text-xs uppercase tracking-widest text-accent-gold font-semibold">Diverse Sectors</span>
-              <h2 className="text-3xl md:text-5xl font-serif font-light mt-2 mb-4 text-primary dark:text-white">Our Business Verticals</h2>
-              <p className="text-sm md:text-base max-w-xl opacity-75 leading-relaxed">
-                We lead across food, tech and educational sectors with a focus on premium quality.
-              </p>
-            </div>
-            
-            {/* Slider Navigation Controls */}
-            <div className="flex items-center gap-3">
-              <button 
-                onClick={() => scrollSlider('left')}
-                className="w-12 h-12 rounded-full border border-gray-300/30 flex items-center justify-center hover:bg-primary hover:text-white hover:border-transparent dark:hover:bg-accent-gold dark:hover:text-dark text-primary dark:text-white transition-all duration-300 shadow-sm"
-                aria-label="Previous slide"
-              >
-                <ChevronRight className="w-5 h-5 rotate-180" />
-              </button>
-              <button 
-                onClick={() => scrollSlider('right')}
-                className="w-12 h-12 rounded-full border border-gray-300/30 flex items-center justify-center hover:bg-primary hover:text-white hover:border-transparent dark:hover:bg-accent-gold dark:hover:text-dark text-primary dark:text-white transition-all duration-300 shadow-sm"
-                aria-label="Next slide"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
+          <div className="text-center mb-16">
+            <span className="text-xs uppercase tracking-widest text-accent-gold font-semibold">Diverse Sectors</span>
+            <h2 className="text-3xl md:text-5xl font-serif font-light mt-2 mb-4 text-primary dark:text-white">Our Business Verticals</h2>
+            <p className="text-sm md:text-base max-w-xl mx-auto opacity-75 leading-relaxed">
+              We lead across food, tech and educational sectors with a focus on premium quality.
+            </p>
           </div>
 
-          <div 
-            ref={sliderRef}
-            className="flex gap-6 lg:gap-8 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth pb-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {businessVerticals.map((biz) => (
               <div 
                 key={biz.id}
-                className="group rounded-3xl overflow-hidden glass-card transition-all duration-500 hover:-translate-y-2 hover:scale-[1.01] hover:shadow-2xl flex flex-col justify-between border-2 border-transparent w-full shrink-0 snap-start snap-always"
+                className="group rounded-3xl overflow-hidden glass-card transition-all duration-500 hover:-translate-y-2 hover:scale-[1.01] hover:shadow-2xl flex flex-col justify-between border-2 border-transparent"
                 style={{ borderColor: 'transparent' }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = biz.brandColor;
