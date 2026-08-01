@@ -197,12 +197,7 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass border-b border-gray-200/10 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => scrollToSection('home')}>
-            <img 
-              src="https://www.paidhuethicalfoods.com/favicon.png" 
-              alt="" 
-              className="h-7 w-auto object-contain" 
-            />
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('home')}>
             <span className="font-serif text-2xl font-bold tracking-tight text-primary dark:text-white flex items-center">
               Paidhu<span className="text-accent-gold">.</span>
             </span>
