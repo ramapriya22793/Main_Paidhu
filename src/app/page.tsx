@@ -627,9 +627,7 @@ export default function Home() {
                     style={{ backgroundColor: biz.id === 'foods' ? '#522742' : '#ffffff' }}
                   >
                     {biz.id === 'foods' ? (
-                      <span className="font-serif text-white font-bold text-xs tracking-tight">
-                        Paidhu<span className="text-accent-gold">.</span>
-                      </span>
+                      <img src="/paidhu_logo_white.png" alt="Paidhu logo" className="max-h-full max-w-full object-contain" />
                     ) : (
                       <img src={biz.logo} alt="" className="max-h-full max-w-full object-contain" />
                     )}
@@ -864,9 +862,7 @@ export default function Home() {
                     style={{ backgroundColor: logo.name === 'Paidhu Ethical Foods' ? '#522742' : '#ffffff' }}
                   >
                     {logo.name === 'Paidhu Ethical Foods' ? (
-                      <span className="font-serif text-white font-bold text-sm tracking-tight">
-                        Paidhu<span className="text-accent-gold">.</span>
-                      </span>
+                      <img src="/paidhu_logo_white.png" alt="Paidhu logo" className="max-h-full max-w-full object-contain" />
                     ) : (
                       <img src={logo.logo} alt={logo.name} className="max-h-full max-w-full object-contain" />
                     )}
