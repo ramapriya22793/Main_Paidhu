@@ -468,7 +468,7 @@ export default function Home() {
       >
         {/* Animated Background Visual */}
         <div className="absolute inset-0 bg-[#1A1A1A] z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#4D0F22]/40 via-[#1A1A1A]/90 to-[#1A1A1A] z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#3B0764]/40 via-[#1A1A1A]/90 to-[#1A1A1A] z-10" />
           <div 
             className="w-full h-full opacity-40 bg-cover bg-center filter blur-[2px] animate-ken-burns"
             style={{ backgroundImage: `url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2000')` }}
@@ -1023,7 +1023,7 @@ export default function Home() {
             <div className="p-8 md:p-10 rounded-3xl glass-card relative">
               {formSubmitted ? (
                 <div className="flex flex-col items-center justify-center h-full text-center py-10">
-                  <div className="w-16 h-16 bg-[#4D0F22]/10 rounded-full flex items-center justify-center text-[#4D0F22] dark:text-accent-gold mb-6">
+                  <div className="w-16 h-16 bg-[#3B0764]/10 rounded-full flex items-center justify-center text-[#3B0764] dark:text-accent-gold mb-6">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <h3 className="font-serif text-xl font-bold mb-2">Message Received</h3>
