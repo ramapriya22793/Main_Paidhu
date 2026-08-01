@@ -464,9 +464,14 @@ export default function Home() {
         ref={sectionRefs.home}
         className="min-h-screen relative flex items-center justify-center overflow-hidden pt-20"
       >
-        {/* Animated Background Visual - Bright Luxury Gradient Mesh */}
+        {/* Animated Background Visual - Bright Corporate Architectural Banner */}
         <div className="absolute inset-0 bg-[#FCFAF6] z-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#FCFAF6] via-[#F8F4EC] to-[#EFEAE2] z-10" />
+          <img 
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
+            alt="Paidhu Group Workspace" 
+            className="w-full h-full object-cover filter brightness-[1.05] contrast-[0.95] opacity-[0.22] scale-102 select-none pointer-events-none animate-ken-burns"
+          />
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#FCFAF6] via-[#F8F4EC]/90 to-[#EFEAE2]/80 z-10" />
           {/* Soft floating decorative color blobs */}
           <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#A66C44]/5 blur-[80px] animate-pulse" style={{ animationDuration: '8s' }} />
           <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#C79B36]/5 blur-[80px] animate-pulse" style={{ animationDuration: '12s' }} />
