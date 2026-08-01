@@ -110,17 +110,18 @@ const projectsData: Project[] = [
   }
 ];
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ sectionRef }: { sectionRef?: React.RefObject<HTMLDivElement | null> }) {
   const [activeId, setActiveId] = useState(projectsData[0].id);
   const activeProject = projectsData.find((p) => p.id === activeId) || projectsData[0];
   
   // Parallax mouse position
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const activeRef = sectionRef || containerRef;
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
+    if (!activeRef.current) return;
+    const rect = activeRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left - rect.width / 2) / 35;
     const y = (e.clientY - rect.top - rect.height / 2) / 35;
     setMousePos({ x, y });
@@ -133,8 +134,8 @@ export default function ProjectsSection() {
   // Sticky scroll observation for desktop
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current || window.innerWidth < 1024) return;
-      const rect = containerRef.current.getBoundingClientRect();
+      if (!activeRef.current || window.innerWidth < 1024) return;
+      const rect = activeRef.current.getBoundingClientRect();
       const sectionHeight = rect.height;
       const scrollProgress = -rect.top / (sectionHeight - window.innerHeight);
 
@@ -153,7 +154,7 @@ export default function ProjectsSection() {
 
   return (
     <section 
-      ref={containerRef}
+      ref={activeRef}
       id="projects" 
       className="py-24 md:py-32 bg-[#F8F9FC] text-[#1E293B] relative"
       style={{ contentVisibility: 'auto' }}

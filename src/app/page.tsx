@@ -901,7 +901,7 @@ export default function Home() {
       </section>
 
       {/* Premium Projects Showcase Section */}
-      <ProjectsSection />
+      <ProjectsSection sectionRef={sectionRefs.projects} />
 
       {/* Evolution Timeline */}
       <section
