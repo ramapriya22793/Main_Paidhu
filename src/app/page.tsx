@@ -42,11 +42,13 @@ export default function Home() {
   const [industriesCount, setIndustriesCount] = useState(0);
   const [satisfaction, setSatisfaction] = useState(0);
   const [visibleSections, setVisibleSections] = useState<{ [key: string]: boolean }>({ home: true });
+  const [activeBizId, setActiveBizId] = useState('foods');
 
   // Refs for tracking sections in viewport
   const sectionRefs: { [key: string]: React.RefObject<HTMLDivElement | null> } = {
     home: useRef<HTMLDivElement>(null),
     about: useRef<HTMLDivElement>(null),
+    businesses: useRef<HTMLDivElement>(null),
     innovation: useRef<HTMLDivElement>(null),
     sustainability: useRef<HTMLDivElement>(null),
     brands: useRef<HTMLDivElement>(null),
@@ -211,6 +213,33 @@ export default function Home() {
             {Object.keys(sectionRefs).map((key) => {
               const label = key.charAt(0).toUpperCase() + key.slice(1);
               const isSelected = activeSection === key;
+              if (key === 'businesses') {
+                return (
+                  <div
+                    key={key}
+                    className="relative py-2"
+                    onMouseEnter={() => setMegaMenuOpen(true)}
+                    onMouseLeave={() => setMegaMenuOpen(false)}
+                  >
+                    <button
+                      onClick={() => {
+                        scrollToSection(key);
+                        setMegaMenuOpen(false);
+                      }}
+                      className={`relative py-1 transition-colors duration-300 text-xs uppercase tracking-wider ${
+                        isSelected || megaMenuOpen
+                          ? 'text-accent-gold font-semibold' 
+                          : 'opacity-70 hover:opacity-100 hover:text-primary dark:hover:text-white'
+                      }`}
+                    >
+                      {label}
+                      {(isSelected || megaMenuOpen) && (
+                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent-gold rounded-full transition-transform duration-300" />
+                      )}
+                    </button>
+                  </div>
+                );
+              }
               return (
                 <button
                   key={key}
@@ -465,10 +494,10 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center font-button animate-fade-in-up" style={{ animationDelay: '700ms' }}>
             <button
-              onClick={() => scrollToSection('projects')}
+              onClick={() => scrollToSection('businesses')}
               className="group w-full sm:w-auto px-8 py-3.5 bg-[#A66C44] hover:bg-[#A66C44]/90 text-white text-xs uppercase tracking-wider font-semibold rounded-full flex items-center justify-center gap-2 shadow-md transition-all duration-300 hover:translate-y-[-2px]"
             >
-              Explore Our Projects
+              Explore Our Businesses
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
             </button>
             <button
@@ -554,6 +583,133 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Our Businesses Section */}
+      <section
+        id="businesses"
+        ref={sectionRefs.businesses}
+        className={`py-24 md:py-32 bg-[#EDEDED]/50 dark:bg-dark relative transition-all duration-1000 transform ${visibleSections.businesses ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      >
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <span className="text-xs uppercase tracking-widest text-accent-gold font-semibold">Diverse Sectors</span>
+            <h2 className="text-3xl md:text-5xl font-serif font-light mt-2 mb-4 text-primary dark:text-white">Our Business Verticals</h2>
+            <p className="text-sm md:text-base max-w-xl mx-auto opacity-75 leading-relaxed">
+              We lead across food, tech and educational sectors with a focus on premium quality.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {businessVerticals.map((biz) => (
+              <div 
+                key={biz.id}
+                className="group rounded-3xl overflow-hidden glass-card transition-all duration-500 hover:-translate-y-2 hover:scale-[1.01] hover:shadow-2xl flex flex-col justify-between border-2 border-transparent"
+                style={{ borderColor: 'transparent' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = biz.brandColor;
+                  e.currentTarget.style.boxShadow = `0 20px 40px -15px ${biz.brandColor}20`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'transparent';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                {/* Visual header */}
+                <div className="relative overflow-hidden aspect-[16/9]">
+                  <img
+                    src={biz.image}
+                    alt={biz.name}
+                    className="w-full h-full object-cover transition-transform duration-700 scale-100 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/30 to-transparent" />
+                  
+                  {/* Brand Logo Overlay badge */}
+                  <div 
+                    className="absolute top-4 right-4 w-12 h-12 rounded-xl p-1 flex items-center justify-center shadow-md overflow-hidden"
+                    style={{ backgroundColor: biz.id === 'foods' ? '#522742' : '#ffffff' }}
+                  >
+                    {biz.id === 'foods' ? (
+                      <img src="/paidhu_logo_white.png" alt="Paidhu logo" className="max-h-full max-w-full object-contain" />
+                    ) : (
+                      <img src={biz.logo} alt="" className="max-h-full max-w-full object-contain" />
+                    )}
+                  </div>
+
+                  <div className="absolute bottom-6 left-6 right-6 text-white">
+                    <span 
+                      className="text-[10px] uppercase tracking-widest font-semibold px-3 py-1 rounded-full backdrop-blur-md text-white"
+                      style={{ backgroundColor: biz.brandColor }}
+                    >
+                      {biz.id === 'foods' || biz.id === 'floffi' ? 'Agri & Food' : biz.id === 'viyara' ? 'Tech & IT' : 'Education'}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-serif font-bold mt-2">{biz.name}</h3>
+                  </div>
+                </div>
+
+                {/* Content body */}
+                <div className="p-6 md:p-8 flex-grow flex flex-col justify-between">
+                  <div>
+                    <p 
+                      className="text-xs font-semibold uppercase tracking-wider mb-2 italic"
+                      style={{ color: biz.brandColor }}
+                    >
+                      "{biz.tagline}"
+                    </p>
+                    <p className="text-sm opacity-80 leading-relaxed mb-6">
+                      {biz.desc}
+                    </p>
+
+                    {/* Sub Brands and features list */}
+                    <div className="grid grid-cols-2 gap-4 mb-6 pt-4 border-t border-gray-200/10">
+                      <div>
+                        <span className="text-[10px] uppercase tracking-widest font-bold opacity-60 block mb-2">Offerings</span>
+                        <ul className="space-y-1">
+                          {biz.subBrands.map((sub, i) => (
+                            <li key={i} className="text-xs opacity-80 flex items-center gap-1.5">
+                              <span 
+                                className="w-1 h-1 rounded-full" 
+                                style={{ backgroundColor: biz.brandColor }}
+                              />
+                              {sub}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div>
+                        <span className="text-[10px] uppercase tracking-widest font-bold opacity-60 block mb-2">Core Principles</span>
+                        <ul className="space-y-1">
+                          {biz.features.map((feat, i) => (
+                            <li key={i} className="text-xs opacity-85 flex items-center gap-1.5 text-primary dark:text-[#F8F6F2]">
+                              <CheckCircle2 
+                                className="w-3 h-3" 
+                                style={{ color: biz.brandColor }}
+                              />
+                              {feat}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <a
+                    href={biz.ctaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 mt-4 text-xs font-semibold tracking-wider uppercase transition-colors duration-300 font-button group/btn"
+                    style={{ color: biz.brandColor }}
+                  >
+                    {biz.ctaText}
+                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:translate-y-[-1px]" />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
 
       {/* Innovation Section */}
@@ -962,13 +1118,13 @@ export default function Home() {
             <ul className="space-y-3 text-xs opacity-70">
               <li><button onClick={() => scrollToSection('home')} className="hover:text-accent-gold transition-colors">Home</button></li>
               <li><button onClick={() => scrollToSection('about')} className="hover:text-accent-gold transition-colors">About</button></li>
-              <li><button onClick={() => scrollToSection('projects')} className="hover:text-accent-gold transition-colors">Projects</button></li>
+              <li><button onClick={() => scrollToSection('businesses')} className="hover:text-accent-gold transition-colors">Businesses</button></li>
 
               <li><button onClick={() => scrollToSection('contact')} className="hover:text-accent-gold transition-colors">Contact</button></li>
             </ul>
           </div>
 
-          {/* Brands */}
+          {/* Businesses */}
           <div className="md:col-span-3">
             <h4 className="text-[11px] uppercase tracking-widest font-bold text-accent-gold mb-6">Our Brands</h4>
             <ul className="space-y-3 text-xs opacity-70">
