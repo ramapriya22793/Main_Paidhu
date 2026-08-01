@@ -49,7 +49,6 @@ export default function Home() {
     home: useRef<HTMLDivElement>(null),
     about: useRef<HTMLDivElement>(null),
     businesses: useRef<HTMLDivElement>(null),
-    innovation: useRef<HTMLDivElement>(null),
     sustainability: useRef<HTMLDivElement>(null),
     brands: useRef<HTMLDivElement>(null),
     projects: useRef<HTMLDivElement>(null),
@@ -706,78 +705,6 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-
-
-      {/* Innovation Section */}
-      <section
-        id="innovation"
-        ref={sectionRefs.innovation}
-        className={`py-24 md:py-32 bg-dark text-white relative overflow-hidden transition-all duration-1000 transform ${visibleSections.innovation ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-      >
-        {/* Abstract background blobs */}
-        <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/10 w-96 h-96 bg-accent-gold/5 rounded-full filter blur-3xl pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-            {/* Left Header */}
-            <div>
-              <span className="text-xs uppercase tracking-widest text-accent-gold font-semibold">Future Ready</span>
-              <h2 className="text-3xl md:text-5xl font-serif font-light mt-2 mb-4 leading-tight">
-                Innovation <br />
-                <span className="font-semibold text-accent-gold">Rooted in Purpose.</span>
-              </h2>
-              <p className="text-sm opacity-70 leading-relaxed">
-                We believe that research and digital intelligence are vital tools for building a sustainable future. We apply next-generation tech to empower every vertical.
-              </p>
-            </div>
-
-            {/* Middle & Right floating cards */}
-            <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-accent-gold/40 hover:-translate-y-1 transition-all duration-300 backdrop-blur-md">
-                <div className="w-10 h-10 rounded-xl bg-accent-gold/20 flex items-center justify-center text-accent-gold mb-6">
-                  <Leaf className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-serif font-semibold mb-2">Ethical Food Research</h3>
-                <p className="text-xs opacity-75 leading-relaxed">
-                  Pioneering sustainable agriculture practices, organic yield methods, and botanical flower crop engineering.
-                </p>
-              </div>
-
-              <div className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-accent-gold/40 hover:-translate-y-1 transition-all duration-300 backdrop-blur-md">
-                <div className="w-10 h-10 rounded-xl bg-accent-gold/20 flex items-center justify-center text-accent-gold mb-6">
-                  <Cpu className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-serif font-semibold mb-2">Digital Transformation</h3>
-                <p className="text-xs opacity-75 leading-relaxed">
-                  Building next-generation workflows, SaaS platforms, and enterprise solutions for global clients at Viyara.
-                </p>
-              </div>
-
-              <div className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-accent-gold/40 hover:-translate-y-1 transition-all duration-300 backdrop-blur-md">
-                <div className="w-10 h-10 rounded-xl bg-accent-gold/20 flex items-center justify-center text-accent-gold mb-6">
-                  <TrendingUp className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-serif font-semibold mb-2">AI & Software Solutions</h3>
-                <p className="text-xs opacity-75 leading-relaxed">
-                  Integrating machine learning Models to speed up logistics, automate code structures and analyze crop variables.
-                </p>
-              </div>
-
-              <div className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-accent-gold/40 hover:-translate-y-1 transition-all duration-300 backdrop-blur-md">
-                <div className="w-10 h-10 rounded-xl bg-accent-gold/20 flex items-center justify-center text-accent-gold mb-6">
-                  <Award className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-serif font-semibold mb-2">Education Technology</h3>
-                <p className="text-xs opacity-75 leading-relaxed">
-                  Designing learning management systems and virtual bootcamps to democratize skills education at Kalika Sphere.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
