@@ -198,9 +198,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('home')}>
-            <span className="font-serif text-2xl font-bold tracking-tight text-primary dark:text-white flex items-center">
-              Paidhu<span className="text-accent-gold">.</span>
-            </span>
+            <img 
+              src="/paidhu_logo_white.png" 
+              alt="Paidhu Group Logo" 
+              className="h-8 w-auto object-contain brightness-0 dark:brightness-100 dark:invert" 
+            />
           </div>
 
           {/* Desktop Menu */}
