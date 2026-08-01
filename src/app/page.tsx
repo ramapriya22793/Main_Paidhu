@@ -480,41 +480,40 @@ export default function Home() {
         ref={sectionRefs.home}
         className="min-h-screen relative flex items-center justify-center overflow-hidden pt-20"
       >
-        {/* Animated Background Visual */}
-        <div className="absolute inset-0 bg-dark z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-dark/90 to-dark z-10" />
-          <div 
-            className="w-full h-full opacity-40 bg-cover bg-center filter blur-[2px] animate-ken-burns"
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2000')` }}
-          />
+        {/* Animated Background Visual - Bright Luxury Gradient Mesh */}
+        <div className="absolute inset-0 bg-[#FCFAF6] z-0 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#FCFAF6] via-[#F8F4EC] to-[#EFEAE2] z-10" />
+          {/* Soft floating decorative color blobs */}
+          <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#A66C44]/5 blur-[80px] animate-pulse" style={{ animationDuration: '8s' }} />
+          <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#C79B36]/5 blur-[80px] animate-pulse" style={{ animationDuration: '12s' }} />
         </div>
 
-        <div className="relative max-w-5xl mx-auto px-6 text-center z-20 text-white mt-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-gold animate-pulse" />
-            <span className="text-[10px] md:text-xs tracking-widest uppercase font-semibold text-accent-gold">Paidhu Group Global Vision</span>
+        <div className="relative max-w-5xl mx-auto px-6 text-center z-20 text-[#1D1412] mt-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#A66C44]/10 border border-[#A66C44]/20 backdrop-blur-md mb-6 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#A66C44] animate-pulse" />
+            <span className="text-[10px] md:text-xs tracking-widest uppercase font-semibold text-[#A66C44]">Paidhu Group Global Vision</span>
           </div>
 
-          <h1 className="text-4xl md:text-7xl font-serif font-light leading-[1.15] mb-6 tracking-tight animate-fade-in-up" style={{ animationDelay: '300ms' }}>
+          <h1 className="text-4xl md:text-7xl font-serif font-light leading-[1.15] mb-6 tracking-tight animate-fade-in-up text-[#1D1412]" style={{ animationDelay: '300ms' }}>
             Building Businesses That <br />
-            <span className="font-semibold italic text-accent-gold">Inspire a Better Future</span>
+            <span className="font-semibold italic text-[#A66C44]">Inspire a Better Future</span>
           </h1>
 
-          <p className="text-sm md:text-lg max-w-2xl mx-auto opacity-80 font-sans font-light leading-relaxed mb-10 animate-fade-in-up" style={{ animationDelay: '500ms' }}>
+          <p className="text-sm md:text-lg max-w-2xl mx-auto opacity-75 font-sans font-light leading-relaxed mb-10 animate-fade-in-up text-[#1D1412]" style={{ animationDelay: '500ms' }}>
             Paidhu Group is a diversified organization shaping the future through ethical foods, innovative technology, premium consumer brands, and transformative education.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center font-button animate-fade-in-up" style={{ animationDelay: '700ms' }}>
             <button
               onClick={() => scrollToSection('businesses')}
-              className="group w-full sm:w-auto px-8 py-3.5 bg-accent-gold hover:bg-accent-gold/90 text-white text-xs uppercase tracking-wider font-semibold rounded-full flex items-center justify-center gap-2 shadow-lg transition-all duration-300 hover:translate-y-[-2px]"
+              className="group w-full sm:w-auto px-8 py-3.5 bg-[#A66C44] hover:bg-[#A66C44]/90 text-white text-xs uppercase tracking-wider font-semibold rounded-full flex items-center justify-center gap-2 shadow-md transition-all duration-300 hover:translate-y-[-2px]"
             >
               Explore Our Businesses
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
             </button>
             <button
               onClick={() => scrollToSection('about')}
-              className="w-full sm:w-auto px-8 py-3.5 bg-white/5 hover:bg-white/10 border border-white/20 text-white text-xs uppercase tracking-wider font-semibold rounded-full transition-all duration-300 backdrop-blur-md"
+              className="w-full sm:w-auto px-8 py-3.5 bg-[#1D1412]/5 hover:bg-[#1D1412]/10 border border-[#1D1412]/10 text-[#1D1412] text-xs uppercase tracking-wider font-semibold rounded-full transition-all duration-300 backdrop-blur-md"
             >
               Learn More
             </button>
@@ -522,10 +521,10 @@ export default function Home() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer opacity-70 hover:opacity-100 transition-opacity z-20" onClick={() => scrollToSection('about')}>
-          <span className="text-[10px] uppercase tracking-widest text-white/50">Scroll to Explore</span>
-          <div className="w-6 h-10 border border-white/30 rounded-full flex justify-center p-1.5">
-            <div className="w-1.5 h-2.5 bg-accent-gold rounded-full animate-bounce" />
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer opacity-60 hover:opacity-100 transition-opacity z-20" onClick={() => scrollToSection('about')}>
+          <span className="text-[10px] uppercase tracking-widest text-[#1D1412]/60">Scroll to Explore</span>
+          <div className="w-6 h-10 border border-[#1D1412]/30 rounded-full flex justify-center p-1.5">
+            <div className="w-1.5 h-2.5 bg-[#A66C44] rounded-full animate-bounce" />
           </div>
         </div>
       </section>
