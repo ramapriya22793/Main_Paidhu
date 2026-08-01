@@ -6,7 +6,6 @@ import {
   Leaf, Cpu, ShieldCheck, TrendingUp, Mail, Phone, MapPin, 
   ArrowRight, Award, Compass, RefreshCw, Send, CheckCircle2
 } from 'lucide-react';
-import ProjectsSection from '../components/ProjectsSection';
 
 // Define structures for business verticals
 interface BusinessVertical {
@@ -50,7 +49,6 @@ export default function Home() {
     about: useRef<HTMLDivElement>(null),
     businesses: useRef<HTMLDivElement>(null),
     brands: useRef<HTMLDivElement>(null),
-    projects: useRef<HTMLDivElement>(null),
     timeline: useRef<HTMLDivElement>(null),
     whyus: useRef<HTMLDivElement>(null),
     contact: useRef<HTMLDivElement>(null),
@@ -780,8 +778,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Premium Projects Showcase Section */}
-      <ProjectsSection sectionRef={sectionRefs.projects} />
+
 
       {/* Evolution Timeline */}
       <section
