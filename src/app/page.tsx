@@ -42,18 +42,7 @@ export default function Home() {
   const [industriesCount, setIndustriesCount] = useState(0);
   const [satisfaction, setSatisfaction] = useState(0);
   const [visibleSections, setVisibleSections] = useState<{ [key: string]: boolean }>({ home: true });
-
-  // Slider controller for businesses vertical
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const scrollSlider = (direction: 'left' | 'right') => {
-    if (sliderRef.current) {
-      const scrollAmount = sliderRef.current.clientWidth;
-      sliderRef.current.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const [activeBizId, setActiveBizId] = useState('foods');
 
   // Refs for tracking sections in viewport
   const sectionRefs: { [key: string]: React.RefObject<HTMLDivElement | null> } = {
@@ -610,113 +599,155 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {businessVerticals.map((biz) => (
-              <div 
-                key={biz.id}
-                className="group rounded-3xl overflow-hidden glass-card transition-all duration-500 hover:-translate-y-2 hover:scale-[1.01] hover:shadow-2xl flex flex-col justify-between border-2 border-transparent"
-                style={{ borderColor: 'transparent' }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = biz.brandColor;
-                  e.currentTarget.style.boxShadow = `0 20px 40px -15px ${biz.brandColor}20`;
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'transparent';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
-              >
-                {/* Visual header */}
-                <div className="relative overflow-hidden aspect-[16/9]">
-                  <img
-                    src={biz.image}
-                    alt={biz.name}
-                    className="w-full h-full object-cover transition-transform duration-700 scale-100 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/30 to-transparent" />
-                  
-                  {/* Brand Logo Overlay badge */}
-                  <div 
-                    className="absolute top-4 right-4 w-12 h-12 rounded-xl p-1 flex items-center justify-center shadow-md overflow-hidden"
-                    style={{ backgroundColor: biz.id === 'foods' ? '#522742' : '#ffffff' }}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            
+            {/* Left Column (35%): Grid of Business Cards (2 columns x 2 rows) */}
+            <div className="lg:col-span-5 grid grid-cols-2 gap-4 lg:sticky lg:top-28">
+              {businessVerticals.map((biz) => {
+                const isActive = biz.id === activeBizId;
+                return (
+                  <div
+                    key={biz.id}
+                    onClick={() => setActiveBizId(biz.id)}
+                    className={`group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer border-2 transition-all duration-500 shadow-sm flex flex-col justify-end p-4 lg:p-5 select-none ${
+                      isActive 
+                        ? 'scale-[1.03] shadow-lg ring-4 ring-offset-0' 
+                        : 'border-transparent hover:border-gray-200 hover:scale-[1.01]'
+                    }`}
+                    style={{ 
+                      borderColor: isActive ? biz.brandColor : 'transparent',
+                      boxShadow: isActive ? `0 20px 40px -15px ${biz.brandColor}20` : 'none',
+                      // Custom properties for Tailwind hover ring
+                      '--ring-color': `${biz.brandColor}15`
+                    } as React.CSSProperties}
                   >
-                    {biz.id === 'foods' ? (
-                      <img src="/paidhu_logo_white.png" alt="Paidhu logo" className="max-h-full max-w-full object-contain" />
-                    ) : (
-                      <img src={biz.logo} alt="" className="max-h-full max-w-full object-contain" />
-                    )}
-                  </div>
+                    {/* Background Image */}
+                    <div className="absolute inset-0 z-0 overflow-hidden">
+                      <img 
+                        src={biz.image} 
+                        alt="" 
+                        className={`w-full h-full object-cover transition-transform duration-700 ${
+                          isActive ? 'scale-110' : 'group-hover:scale-105'
+                        }`}
+                        loading="lazy"
+                      />
+                    </div>
+                    
+                    {/* Dark Gradient Overlay */}
+                    <div className={`absolute inset-0 z-10 transition-opacity duration-500 ${
+                      isActive ? 'bg-black/60' : 'bg-black/75 group-hover:bg-black/60'
+                    }`} />
 
-                  <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <span 
-                      className="text-[10px] uppercase tracking-widest font-semibold px-3 py-1 rounded-full backdrop-blur-md text-white"
-                      style={{ backgroundColor: biz.brandColor }}
+                    {/* Logo overlay badge on card top-right */}
+                    <div 
+                      className="absolute top-3 right-3 w-8 h-8 rounded-lg p-0.5 flex items-center justify-center shadow-md overflow-hidden z-20"
+                      style={{ backgroundColor: biz.id === 'foods' ? '#522742' : '#ffffff' }}
                     >
-                      {biz.id === 'foods' || biz.id === 'floffi' ? 'Agri & Food' : biz.id === 'viyara' ? 'Tech & IT' : 'Education'}
-                    </span>
-                    <h3 className="text-xl md:text-2xl font-serif font-bold mt-2">{biz.name}</h3>
+                      <img src={biz.id === 'foods' ? '/paidhu_logo_white.png' : biz.logo} alt="" className="max-h-full max-w-full object-contain" />
+                    </div>
+
+                    {/* Content Overlay */}
+                    <div className="relative z-20 w-full flex items-center justify-between gap-2 text-white">
+                      <div className="min-w-0">
+                        <span className="text-[8px] uppercase tracking-widest block mb-1" style={{ color: biz.brandColor }}>
+                          {biz.id === 'foods' || biz.id === 'floffi' ? 'Agri & Food' : biz.id === 'viyara' ? 'Tech & IT' : 'Education'}
+                        </span>
+                        <h4 className="font-serif text-xs font-bold truncate leading-snug">
+                          {biz.name}
+                        </h4>
+                      </div>
+                      <ChevronRight className="w-3.5 h-3.5 shrink-0 transition-transform duration-300 group-hover:translate-x-1" style={{ color: biz.brandColor }} />
+                    </div>
                   </div>
-                </div>
+                );
+              })}
+            </div>
 
-                {/* Content body */}
-                <div className="p-6 md:p-8 flex-grow flex flex-col justify-between">
-                  <div>
-                    <p 
-                      className="text-xs font-semibold uppercase tracking-wider mb-2 italic"
-                      style={{ color: biz.brandColor }}
+            {/* Right Column (65%): Detailed Showcase Panel */}
+            {(() => {
+              const activeBiz = businessVerticals.find((b) => b.id === activeBizId) || businessVerticals[0];
+              return (
+                <div className="lg:col-span-7 bg-white dark:bg-dark rounded-3xl p-6 lg:p-10 border border-gray-200/50 dark:border-gray-800 shadow-md">
+                  
+                  {/* Brand Image */}
+                  <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-8 shadow-lg">
+                    <img
+                      src={activeBiz.image}
+                      alt={activeBiz.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                    
+                    {/* Brand Logo Floating Badge */}
+                    <div 
+                      className="absolute bottom-4 left-4 border border-gray-200/20 px-4 py-2 rounded-xl text-white shadow-lg backdrop-blur-md flex items-center justify-center overflow-hidden"
+                      style={{ backgroundColor: activeBiz.id === 'foods' ? '#522742' : '#ffffff' }}
                     >
-                      "{biz.tagline}"
-                    </p>
-                    <p className="text-sm opacity-80 leading-relaxed mb-6">
-                      {biz.desc}
-                    </p>
-
-                    {/* Sub Brands and features list */}
-                    <div className="grid grid-cols-2 gap-4 mb-6 pt-4 border-t border-gray-200/10">
-                      <div>
-                        <span className="text-[10px] uppercase tracking-widest font-bold opacity-60 block mb-2">Offerings</span>
-                        <ul className="space-y-1">
-                          {biz.subBrands.map((sub, i) => (
-                            <li key={i} className="text-xs opacity-80 flex items-center gap-1.5">
-                              <span 
-                                className="w-1 h-1 rounded-full" 
-                                style={{ backgroundColor: biz.brandColor }}
-                              />
-                              {sub}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div>
-                        <span className="text-[10px] uppercase tracking-widest font-bold opacity-60 block mb-2">Core Principles</span>
-                        <ul className="space-y-1">
-                          {biz.features.map((feat, i) => (
-                            <li key={i} className="text-xs opacity-85 flex items-center gap-1.5 text-primary dark:text-[#F8F6F2]">
-                              <CheckCircle2 
-                                className="w-3 h-3" 
-                                style={{ color: biz.brandColor }}
-                              />
-                              {feat}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      <img src={activeBiz.id === 'foods' ? '/paidhu_logo_white.png' : activeBiz.logo} alt="" className="h-6 w-auto object-contain" />
                     </div>
                   </div>
 
-                  <a
-                    href={biz.ctaUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 mt-4 text-xs font-semibold tracking-wider uppercase transition-colors duration-300 font-button group/btn"
-                    style={{ color: biz.brandColor }}
-                  >
-                    {biz.ctaText}
-                    <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:translate-y-[-1px]" />
-                  </a>
+                  {/* Brand Information */}
+                  <div className="space-y-6">
+                    <div>
+                      <span className="text-[10px] uppercase tracking-widest font-semibold block mb-2" style={{ color: activeBiz.brandColor }}>
+                        {activeBiz.tagline}
+                      </span>
+                      <h3 className="text-2xl lg:text-4xl font-serif font-bold tracking-tight leading-tight mb-4" style={{ color: activeBiz.brandColor }}>
+                        {activeBiz.name}
+                      </h3>
+                      <p className="text-sm lg:text-base opacity-80 leading-relaxed font-sans font-light text-primary dark:text-[#F8F6F2]">
+                        {activeBiz.desc}
+                      </p>
+                    </div>
+
+                    {/* Sub Brands / Offerings */}
+                    <div>
+                      <span className="text-[10px] uppercase tracking-widest font-semibold opacity-60 block mb-3">Key Offerings</span>
+                      <div className="flex flex-wrap gap-2">
+                        {activeBiz.subBrands.map((brand, idx) => (
+                          <span 
+                            key={idx} 
+                            className="px-3.5 py-1.5 rounded-full bg-[#F8F9FC] dark:bg-black border border-gray-200/40 dark:border-gray-800 text-[10px] tracking-wide font-medium text-primary dark:text-[#F8F6F2]"
+                          >
+                            {brand}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Core Principles / Features */}
+                    <div>
+                      <span className="text-[10px] uppercase tracking-widest font-semibold opacity-60 block mb-3">Core Principles</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {activeBiz.features.map((feature, idx) => (
+                          <div key={idx} className="p-4 bg-[#F8F9FC] dark:bg-black border border-gray-200/30 dark:border-gray-800 rounded-2xl flex items-start gap-2.5">
+                            <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" style={{ color: activeBiz.brandColor }} />
+                            <span className="text-xs font-medium leading-relaxed text-primary dark:text-[#F8F6F2]">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Visit Brand CTA Button */}
+                    <div className="pt-6">
+                      <a 
+                        href={activeBiz.ctaUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2.5 px-8 py-3.5 text-white text-xs uppercase tracking-wider font-semibold rounded-full shadow-md transition-all duration-300 hover:translate-y-[-2px]"
+                        style={{ backgroundColor: activeBiz.brandColor }}
+                      >
+                        {activeBiz.ctaText}
+                        <ArrowUpRight className="w-4 h-4" />
+                      </a>
+                    </div>
+
+                  </div>
+
                 </div>
-              </div>
-            ))}
+              );
+            })()}
           </div>
         </div>
       </section>
