@@ -191,7 +191,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen font-sans bg-[#F8F6F2] dark:bg-[#1A1A1A] text-[#1A1A1A] dark:text-[#F8F6F2] transition-colors duration-300">
+    <div className="min-h-screen font-sans bg-[#F8F6F2] dark:bg-dark text-dark dark:text-[#F8F6F2] transition-colors duration-300">
       
       {/* Sticky Navigation Header */}
       <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass border-b border-gray-200/10 backdrop-blur-md">
@@ -326,7 +326,7 @@ export default function Home() {
         {/* Mega Dropdown Menu */}
         {megaMenuOpen && (
           <div 
-            className="absolute top-20 left-0 right-0 w-full bg-[#1A1A1A] border-t border-white/10 text-white z-40 transition-all duration-300 shadow-2xl py-12"
+            className="absolute top-20 left-0 right-0 w-full bg-dark border-t border-white/10 text-white z-40 transition-all duration-300 shadow-2xl py-12"
             onMouseEnter={() => setMegaMenuOpen(true)}
             onMouseLeave={() => setMegaMenuOpen(false)}
           >
@@ -432,7 +432,7 @@ export default function Home() {
                 placeholder="Search Group information, businesses, sustainability report..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-5 py-3 pr-12 rounded-full border border-gray-300/35 bg-[#F8F6F2] dark:bg-[#1A1A1A] focus:outline-none focus:ring-1 focus:ring-accent-gold text-sm"
+                className="w-full px-5 py-3 pr-12 rounded-full border border-gray-300/35 bg-[#F8F6F2] dark:bg-dark focus:outline-none focus:ring-1 focus:ring-accent-gold text-sm"
               />
               <button className="absolute right-4 top-1/2 -translate-y-1/2 text-accent-gold">
                 <Search className="w-4 h-4" />
@@ -443,7 +443,7 @@ export default function Home() {
 
         {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden w-full bg-[#FFFFFF]/95 dark:bg-[#1A1A1A]/95 backdrop-blur-lg border-b border-gray-200/20 py-6 px-6 flex flex-col gap-4 shadow-xl z-50">
+          <div className="lg:hidden w-full bg-[#FFFFFF]/95 dark:bg-dark/95 backdrop-blur-lg border-b border-gray-200/20 py-6 px-6 flex flex-col gap-4 shadow-xl z-50">
             {Object.keys(sectionRefs).map((key) => {
               const label = key.charAt(0).toUpperCase() + key.slice(1);
               return (
@@ -467,8 +467,8 @@ export default function Home() {
         className="min-h-screen relative flex items-center justify-center overflow-hidden pt-20"
       >
         {/* Animated Background Visual */}
-        <div className="absolute inset-0 bg-[#1A1A1A] z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#3B0764]/40 via-[#1A1A1A]/90 to-[#1A1A1A] z-10" />
+        <div className="absolute inset-0 bg-dark z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-dark/90 to-dark z-10" />
           <div 
             className="w-full h-full opacity-40 bg-cover bg-center filter blur-[2px] animate-ken-burns"
             style={{ backgroundImage: `url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2000')` }}
@@ -520,7 +520,7 @@ export default function Home() {
       <section
         id="about"
         ref={sectionRefs.about}
-        className="py-24 md:py-32 bg-[#F8F6F2] dark:bg-[#1A1A1A] relative"
+        className="py-24 md:py-32 bg-[#F8F6F2] dark:bg-dark relative"
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -714,7 +714,7 @@ export default function Home() {
       <section
         id="innovation"
         ref={sectionRefs.innovation}
-        className="py-24 md:py-32 bg-[#1A1A1A] text-white relative overflow-hidden"
+        className="py-24 md:py-32 bg-dark text-white relative overflow-hidden"
       >
         {/* Abstract background blobs */}
         <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl pointer-events-none" />
@@ -832,7 +832,7 @@ export default function Home() {
       <section
         id="brands"
         ref={sectionRefs.brands}
-        className="py-24 md:py-32 bg-[#EDEDED]/40 dark:bg-dark text-[#1A1A1A] dark:text-[#F8F6F2] relative"
+        className="py-24 md:py-32 bg-[#EDEDED]/40 dark:bg-dark text-dark dark:text-[#F8F6F2] relative"
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -889,7 +889,7 @@ export default function Home() {
       <section
         id="timeline"
         ref={sectionRefs.timeline}
-        className="py-24 md:py-32 bg-[#F8F6F2] dark:bg-[#1A1A1A] relative"
+        className="py-24 md:py-32 bg-[#F8F6F2] dark:bg-dark relative"
       >
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -910,7 +910,7 @@ export default function Home() {
             ].map((item, idx) => (
               <div key={idx} className="relative pl-8 md:pl-12 group">
                 {/* Timeline Dot */}
-                <div className="absolute left-[-9px] top-1.5 w-4.5 h-4.5 rounded-full border-2 border-accent-gold bg-[#F8F6F2] dark:bg-[#1A1A1A] group-hover:bg-accent-gold transition-colors duration-300 flex items-center justify-center">
+                <div className="absolute left-[-9px] top-1.5 w-4.5 h-4.5 rounded-full border-2 border-accent-gold bg-[#F8F6F2] dark:bg-dark group-hover:bg-accent-gold transition-colors duration-300 flex items-center justify-center">
                   <div className="w-1.5 h-1.5 rounded-full bg-accent-gold group-hover:bg-white" />
                 </div>
                 
@@ -971,7 +971,7 @@ export default function Home() {
       <section
         id="contact"
         ref={sectionRefs.contact}
-        className="py-24 md:py-32 bg-[#F8F6F2] dark:bg-[#1A1A1A] relative"
+        className="py-24 md:py-32 bg-[#F8F6F2] dark:bg-dark relative"
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
