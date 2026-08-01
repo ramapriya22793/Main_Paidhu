@@ -41,13 +41,13 @@ export default function Home() {
   const [brandsCount, setBrandsCount] = useState(0);
   const [industriesCount, setIndustriesCount] = useState(0);
   const [satisfaction, setSatisfaction] = useState(0);
+  const [visibleSections, setVisibleSections] = useState<{ [key: string]: boolean }>({ home: true });
 
   // Refs for tracking sections in viewport
   const sectionRefs: { [key: string]: React.RefObject<HTMLDivElement | null> } = {
     home: useRef<HTMLDivElement>(null),
     about: useRef<HTMLDivElement>(null),
     businesses: useRef<HTMLDivElement>(null),
-
     innovation: useRef<HTMLDivElement>(null),
     sustainability: useRef<HTMLDivElement>(null),
     brands: useRef<HTMLDivElement>(null),
@@ -56,18 +56,19 @@ export default function Home() {
     contact: useRef<HTMLDivElement>(null),
   };
 
-  // Handle intersection observer to update active section
+  // Handle intersection observer to update active section and visible sections
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-30% 0px -60% 0px',
-      threshold: 0,
+      rootMargin: '-8% 0px -15% 0px',
+      threshold: 0.05,
     };
 
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
+          setVisibleSections((prev) => ({ ...prev, [entry.target.id]: true }));
         }
       });
     };
@@ -520,7 +521,7 @@ export default function Home() {
       <section
         id="about"
         ref={sectionRefs.about}
-        className="py-24 md:py-32 bg-[#F8F6F2] dark:bg-dark relative"
+        className={`py-24 md:py-32 bg-[#F8F6F2] dark:bg-dark relative transition-all duration-1000 transform ${visibleSections.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -586,7 +587,7 @@ export default function Home() {
       <section
         id="businesses"
         ref={sectionRefs.businesses}
-        className="py-24 md:py-32 bg-[#EDEDED]/50 dark:bg-dark relative"
+        className={`py-24 md:py-32 bg-[#EDEDED]/50 dark:bg-dark relative transition-all duration-1000 transform ${visibleSections.businesses ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -714,7 +715,7 @@ export default function Home() {
       <section
         id="innovation"
         ref={sectionRefs.innovation}
-        className="py-24 md:py-32 bg-dark text-white relative overflow-hidden"
+        className={`py-24 md:py-32 bg-dark text-white relative overflow-hidden transition-all duration-1000 transform ${visibleSections.innovation ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
         {/* Abstract background blobs */}
         <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-primary/10 rounded-full filter blur-3xl pointer-events-none" />
@@ -784,7 +785,7 @@ export default function Home() {
       <section
         id="sustainability"
         ref={sectionRefs.sustainability}
-        className="py-32 relative flex items-center justify-center overflow-hidden"
+        className={`py-32 relative flex items-center justify-center overflow-hidden transition-all duration-1000 transform ${visibleSections.sustainability ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
         {/* Parallax Image Overlay */}
         <div className="absolute inset-0 z-0">
@@ -832,7 +833,7 @@ export default function Home() {
       <section
         id="brands"
         ref={sectionRefs.brands}
-        className="py-24 md:py-32 bg-[#EDEDED]/40 dark:bg-dark text-dark dark:text-[#F8F6F2] relative"
+        className={`py-24 md:py-32 bg-[#EDEDED]/40 dark:bg-dark text-dark dark:text-[#F8F6F2] relative transition-all duration-1000 transform ${visibleSections.brands ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -889,7 +890,7 @@ export default function Home() {
       <section
         id="timeline"
         ref={sectionRefs.timeline}
-        className="py-24 md:py-32 bg-[#F8F6F2] dark:bg-dark relative"
+        className={`py-24 md:py-32 bg-[#F8F6F2] dark:bg-dark relative transition-all duration-1000 transform ${visibleSections.timeline ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -971,7 +972,7 @@ export default function Home() {
       <section
         id="contact"
         ref={sectionRefs.contact}
-        className="py-24 md:py-32 bg-[#F8F6F2] dark:bg-dark relative"
+        className={`py-24 md:py-32 bg-[#F8F6F2] dark:bg-dark relative transition-all duration-1000 transform ${visibleSections.contact ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
