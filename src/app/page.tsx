@@ -47,7 +47,7 @@ export default function Home() {
   const sliderRef = useRef<HTMLDivElement>(null);
   const scrollSlider = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
-      const scrollAmount = sliderRef.current.clientWidth * 0.85;
+      const scrollAmount = sliderRef.current.clientWidth;
       sliderRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth',
@@ -637,7 +637,7 @@ export default function Home() {
             {businessVerticals.map((biz) => (
               <div 
                 key={biz.id}
-                className="group rounded-3xl overflow-hidden glass-card transition-all duration-500 hover:-translate-y-2 hover:scale-[1.01] hover:shadow-2xl flex flex-col justify-between border-2 border-transparent w-[300px] sm:w-[400px] md:w-[calc(50%-16px)] shrink-0 snap-start snap-always"
+                className="group rounded-3xl overflow-hidden glass-card transition-all duration-500 hover:-translate-y-2 hover:scale-[1.01] hover:shadow-2xl flex flex-col justify-between border-2 border-transparent w-full shrink-0 snap-start snap-always"
                 style={{ borderColor: 'transparent' }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = biz.brandColor;
