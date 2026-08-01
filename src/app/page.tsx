@@ -857,8 +857,17 @@ export default function Home() {
                 <div className="absolute inset-0 bg-accent-gold/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 
                 <div>
-                  <div className="w-20 h-20 bg-white dark:bg-dark border border-gray-200/10 mx-auto flex items-center justify-center p-3 rounded-2xl mb-6 shadow-sm transition-transform duration-500 group-hover:scale-110">
-                    <img src={logo.logo} alt={logo.name} className="max-h-full max-w-full object-contain" />
+                  <div 
+                    className="w-20 h-20 border border-gray-200/10 mx-auto flex items-center justify-center p-3 rounded-2xl mb-6 shadow-sm transition-transform duration-500 group-hover:scale-110 overflow-hidden"
+                    style={{ backgroundColor: logo.name === 'Paidhu Ethical Foods' ? '#522742' : '#ffffff' }}
+                  >
+                    {logo.name === 'Paidhu Ethical Foods' ? (
+                      <span className="font-serif text-white font-bold text-sm tracking-tight">
+                        Paidhu<span className="text-accent-gold">.</span>
+                      </span>
+                    ) : (
+                      <img src={logo.logo} alt={logo.name} className="max-h-full max-w-full object-contain" />
+                    )}
                   </div>
                   <h3 className="font-serif text-base font-bold mb-2">{logo.name}</h3>
                   <p className="text-xs opacity-70 leading-relaxed mb-6">{logo.desc}</p>
